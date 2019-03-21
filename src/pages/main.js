@@ -10,23 +10,38 @@ import api from "../services/api";
 
 export default class Main extends Component {
     state = {
-        docs: []
+        docs: [],
+        page: 1,
+        productInfo: {}
     };
 
     static navigationOptions = {
-        title: "Erik"
+        title: "Erik Matos"
     };
 
     componentDidMount() {
         this.loadingProducts();
     }
+    s;
+    loadingProducts = async (page = 1) => {
+        const response = await api.get(`/products?page=${page}`);
+        const { docs, ...productInfo } = response.data;
+        console.log(docs);
 
-    loadingProducts = async () => {
-        const response = await api.get("/products");
-        const { docs } = response.data;
-        console.log(response);
+        this.setState({
+            docs: [...this.state.docs, ...docs],
+            productInfo,
+            page
+        });
+    };
 
-        this.setState({ docs });
+    loadMore = () => {
+        const { page, productInfo } = this.state;
+        if (page === productInfo.pages) return;
+
+        const pageNumber = page + 1;
+
+        this.loadingProducts(pageNumber);
     };
 
     renderItem = ({ item }) => (
@@ -34,7 +49,14 @@ export default class Main extends Component {
             <Text style={styles.productTitle}>{item.title}</Text>
             <Text style={styles.productDescription}>{item.description}</Text>
 
-            <TouchableOpacity style={styles.productButton} onPress={() => {}}>
+            <TouchableOpacity
+                style={styles.productButton}
+                onPress={() => {
+                    this.props.navigation.navigate("Product", {
+                        product: item
+                    });
+                }}
+            >
                 <Text style={styles.productButtonText}>Acessar</Text>
             </TouchableOpacity>
         </View>
@@ -46,8 +68,10 @@ export default class Main extends Component {
                 <FlatList
                     contentContainerStyle={styles.list}
                     data={this.state.docs}
-                    keyExtractor={item => item._id}
+                    keyExtractor={item => item._id + Math.random()}
                     renderItem={this.renderItem}
+                    onEndReached={this.loadMore}
+                    onEndReachedThreshold={0.1}
                 />
             </View>
         );
@@ -57,7 +81,8 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fafafa"
+        backgroundColor: "#fafafa",
+        alignItems: "center"
     },
     list: {
         padding: 20
