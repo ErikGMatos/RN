@@ -7,7 +7,7 @@ export default class Main extends Component {
     state = {};
 
     static navigationOptions = {
-        title: "Calculadora de notas "
+        title: "Calculadora de notas"
     };
 
     componentDidMount() {}
@@ -29,11 +29,9 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f3f3f3",
+        backgroundColor: "#f3f3f3"
     },
     containerForm: {
-        flex: 1,
-        
-        
+        flex: 1
     }
 });
