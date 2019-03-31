@@ -6,9 +6,10 @@ const styles = StyleSheet.create({
         paddingVertical: 0,
         paddingTop: 20,
         paddingBottom: 0,
-        height: 50,
+        height: 55,
         marginBottom: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        fontSize: 25
     },
     container: {
         paddingHorizontal: 30
@@ -30,7 +31,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
         backgroundColor: "#3D7AE8",
-        elevation: 2
+        elevation: 2,
+        width:100
     },
     iconCalcular: {
         color: "#fff",
@@ -38,15 +40,9 @@ const styles = StyleSheet.create({
     },
     textCalcular: {
         color: "#fff",
-        fontSize: 28
+        fontSize: 22
     },
-    img: {
-        marginTop: 10,
-        marginBottom: 0,
-        marginRight: "auto",
-        marginLeft: "auto",
-        height: 70
-    }
+    
 });
 
 export default styles;

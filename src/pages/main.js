@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Toolbar from "../componentes/ToolBar";
 import Form from "../componentes/Form";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Image } from "react-native";
 
 export default class Main extends Component {
     state = {};
@@ -14,12 +14,17 @@ export default class Main extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <ScrollView>
-                    <View style={styles.containerForm}>
-                        <Form />
+            <View style={{ flex: 1, backgroundColor: "#f3f3f3" }}>
+                <Image style={styles.img} source={require("../img/sl3.png")} />
+                <View style={styles.container}>
+                    <View>
+                        <ScrollView>
+                            <View style={styles.containerForm}>
+                                <Form />
+                            </View>
+                        </ScrollView>
                     </View>
-                </ScrollView>
+                </View>
                 <Toolbar />
             </View>
         );
@@ -29,9 +34,15 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f3f3f3"
+        backgroundColor: "#f3f3f3",
+        justifyContent: "center"
     },
     containerForm: {
         flex: 1
+    },
+    img: {
+        marginRight: "auto",
+        marginLeft: "auto",
+        height:70
     }
 });
