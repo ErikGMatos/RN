@@ -6,10 +6,10 @@ const styles = StyleSheet.create({
         paddingVertical: 0,
         paddingTop: 20,
         paddingBottom: 0,
-        height: 55,
+        height: 50,
         marginBottom: 10,
         borderRadius: 5,
-        fontSize: 25
+        fontSize: 18
     },
     container: {
         paddingHorizontal: 30

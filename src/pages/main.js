@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
     img: {
         marginRight: "auto",
         marginLeft: "auto",
-        height:70
+        height: 70
     }
 });
