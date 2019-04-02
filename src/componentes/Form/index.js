@@ -28,55 +28,70 @@ class Form extends Component {
                 <Text style={styles.titulo}>
                     Insira suas notas nos campos abaixo:
                 </Text>
-                <TextInputMask
-                    type={"custom"}
-                    keyboardType="numeric"
-                    options={{
-                        mask: "9.99"
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between"
                     }}
-                    style={styles.input}
-                    underlineColorAndroid="transparent"
-                    value={this.state.nota1}
-                    onChangeText={async nota1 => {
-                        await this.setState({
-                            nota1
-                        });
-                        this.SomaTotal();
-                    }}
-                />
-                <TextInputMask
-                    type={"custom"}
-                    options={{
-                        mask: "9.99"
-                    }}
-                    keyboardType="numeric"
-                    style={styles.input}
-                    underlineColorAndroid="transparent"
-                    value={this.state.nota2}
-                    onChangeText={async nota2 => {
-                        await this.setState({
-                            nota2
-                        });
-                        this.SomaTotal();
-                    }}
-                />
-                <TextInputMask
-                    type={"custom"}
-                    options={{
-                        mask: "9.99"
-                    }}
-                    keyboardType="numeric"
-                    style={styles.input}
-                    underlineColorAndroid="transparent"
-                    value={this.state.nota3}
-                    onChangeText={async nota3 => {
-                        await this.setState({
-                            nota3
-                        });
-                        this.SomaTotal();
-                    }}
-                />
-
+                >
+                    <TextInputMask
+                        type={"money"}
+                        keyboardType="numeric"
+                        options={{
+                            separator: ".",
+                            unit: ""
+                        }}
+                        placeholder="nota 1"
+                        maxLength={5}
+                        style={styles.input}
+                        underlineColorAndroid="transparent"
+                        value={this.state.nota1}
+                        onChangeText={async nota1 => {
+                            await this.setState({
+                                nota1
+                            });
+                            this.SomaTotal();
+                        }}
+                    />
+                    <TextInputMask
+                        type={"money"}
+                        keyboardType="numeric"
+                        options={{
+                            separator: ".",
+                            unit: ""
+                        }}
+                        placeholder="nota 2"
+                        maxLength={5}
+                        style={styles.input}
+                        underlineColorAndroid="transparent"
+                        value={this.state.nota2}
+                        onChangeText={async nota2 => {
+                            await this.setState({
+                                nota2
+                            });
+                            this.SomaTotal();
+                        }}
+                    />
+                    <TextInputMask
+                        type={"money"}
+                        keyboardType="numeric"
+                        options={{
+                            separator: ".",
+                            unit: ""
+                        }}
+                        maxLength={5}
+                        placeholder="nota 3"
+                        style={styles.input}
+                        underlineColorAndroid="transparent"
+                        value={this.state.nota3}
+                        onChangeText={async nota3 => {
+                            await this.setState({
+                                nota3
+                            });
+                            this.SomaTotal();
+                        }}
+                    />
+                </View>
                 <TouchableOpacity
                     style={styles.containerCalcular}
                     onPress={this.reset}

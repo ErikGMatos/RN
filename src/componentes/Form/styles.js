@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         height: 50,
         marginBottom: 10,
         borderRadius: 5,
-        fontSize: 18
+        fontSize: 18,
+        flex: .3 
     },
     container: {
         paddingHorizontal: 30
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         backgroundColor: "#3D7AE8",
         elevation: 2,
-        width:100
+        width: 100
     },
     iconCalcular: {
         color: "#fff",
@@ -41,8 +42,7 @@ const styles = StyleSheet.create({
     textCalcular: {
         color: "#fff",
         fontSize: 22
-    },
-    
+    }
 });
 
 export default styles;
