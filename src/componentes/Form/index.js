@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
 import { View, TextInput, Text, TouchableOpacity, Image } from "react-native";
-
+import { TextInputMask } from "react-native-masked-text";
 import styles from "./styles";
 
 class Form extends Component {
@@ -14,8 +14,8 @@ class Form extends Component {
 
     SomaTotal = () => {
         const { nota1, nota2, nota3 } = this.state;
-        const total = nota1 + nota2 + nota3;
-        this.setState({ total });
+        const total = Number(nota1) + Number(nota2) + Number(nota3);
+        this.setState({ total: total.toFixed(2) });
     };
 
     reset = () => {
@@ -28,67 +28,67 @@ class Form extends Component {
                 <Text style={styles.titulo}>
                     Insira suas notas nos campos abaixo:
                 </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Digite aqui sua nota 1..."
-                    underlineColorAndroid="transparent"
+                <TextInputMask
+                    type={"custom"}
                     keyboardType="numeric"
-                    maxLength={3}
+                    options={{
+                        mask: "9.99"
+                    }}
+                    style={styles.input}
+                    underlineColorAndroid="transparent"
+                    value={this.state.nota1}
                     onChangeText={async nota1 => {
-                        const nota = nota1 === "" ? "0" : nota1;
-                        await this.setState({ nota1: parseInt(nota) });
+                        await this.setState({
+                            nota1
+                        });
                         this.SomaTotal();
                     }}
-                    value={`${this.state.nota1}`}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Digite aqui sua nota 2..."
-                    underlineColorAndroid="transparent"
+                <TextInputMask
+                    type={"custom"}
+                    options={{
+                        mask: "9.99"
+                    }}
                     keyboardType="numeric"
-                    maxLength={3}
+                    style={styles.input}
+                    underlineColorAndroid="transparent"
+                    value={this.state.nota2}
                     onChangeText={async nota2 => {
-                        const nota = nota2 === "" ? "0" : nota2;
-                        await this.setState({ nota2: parseInt(nota) });
+                        await this.setState({
+                            nota2
+                        });
                         this.SomaTotal();
                     }}
-                    value={`${this.state.nota2}`}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Digite aqui sua nota 3..."
-                    underlineColorAndroid="transparent"
+                <TextInputMask
+                    type={"custom"}
+                    options={{
+                        mask: "9.99"
+                    }}
                     keyboardType="numeric"
-                    maxLength={3}
+                    style={styles.input}
+                    underlineColorAndroid="transparent"
+                    value={this.state.nota3}
                     onChangeText={async nota3 => {
-                        const nota = nota3 === "" ? "0" : nota3;
-                        await this.setState({ nota3: parseInt(nota) });
+                        await this.setState({
+                            nota3
+                        });
                         this.SomaTotal();
                     }}
-                    value={`${this.state.nota3}`}
                 />
 
                 <TouchableOpacity
                     style={styles.containerCalcular}
                     onPress={this.reset}
                 >
-                    {/* <Icon
-                        style={styles.iconCalcular}
-                        name="calculator"
-                        size={30}
-                        color="#333"
-                    /> */}
                     <Text style={styles.textCalcular}>Reset</Text>
                 </TouchableOpacity>
-                <Text style={{ fontSize: 28, marginTop: 20 }}>
+                <Text style={{ fontSize: 20, marginTop: 20 }}>
                     Questões prova final:{" "}
                     <Text style={{ color: "#3D7AE8", fontWeight: "bold" }}>
                         {this.state.total}
                     </Text>
                 </Text>
-                {/* <Text>{this.state.nota1}</Text>
-                <Text>{this.state.nota2}</Text>
-                <Text>{this.state.nota3}</Text> */}
             </View>
         );
     }
