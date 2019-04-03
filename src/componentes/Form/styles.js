@@ -4,13 +4,13 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: "#fff",
         paddingVertical: 0,
-        paddingTop: 20,
         paddingBottom: 0,
         height: 50,
         marginBottom: 10,
         borderRadius: 5,
         fontSize: 18,
-        flex: .3 
+        flex: .3 ,
+        textAlign:"center"
     },
     container: {
         paddingHorizontal: 30
