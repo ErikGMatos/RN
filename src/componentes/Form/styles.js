@@ -9,8 +9,10 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 5,
         fontSize: 18,
-        flex: .3 ,
-        textAlign:"center"
+        flex: 0.48,
+        textAlign: "center",
+        borderColor: "#ddd",
+        borderWidth: 1
     },
     container: {
         paddingHorizontal: 30
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderWidth: 2,
         borderColor: "#3D7AE8",
-        height: 60,
+        height: 40,
         borderRadius: 3,
         marginTop: 20,
         marginBottom: 20,
@@ -41,7 +43,17 @@ const styles = StyleSheet.create({
     },
     textCalcular: {
         color: "#fff",
-        fontSize: 22
+        fontSize: 20
+    },
+    textNotaPesoFinal: {
+        flex: 0.48,
+        borderColor: "#ddd",
+        borderWidth: 1,
+        textAlign: "left",
+        paddingTop: 15,
+        paddingLeft: 15,
+        height: 50,
+        backgroundColor: "#fff"
     }
 });
 

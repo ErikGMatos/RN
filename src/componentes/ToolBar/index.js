@@ -6,10 +6,20 @@ import styles from "./styles";
 
 const ToolBar = () => (
     <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity
+            style={{
+                height: "100%",
+                justifyContent: "center"
+            }}
+        >
             <Icon style={styles.icon} name="home" size={25} color="#fff" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+            style={{
+                height: "100%",
+                justifyContent: "center"
+            }}
+        >
             <Icon
                 style={styles.icon}
                 name="paper-plane"
@@ -18,7 +28,12 @@ const ToolBar = () => (
             />
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+            style={{
+                height: "100%",
+                justifyContent: "center"
+            }}
+        >
             <Icon
                 style={styles.icon}
                 name="cloud-upload"
@@ -26,7 +41,12 @@ const ToolBar = () => (
                 color="#fff"
             />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+            style={{
+                height: "100%",
+                justifyContent: "center"
+            }}
+        >
             <Icon style={styles.icon} name="refresh" size={25} color="#fff" />
         </TouchableOpacity>
     </View>
