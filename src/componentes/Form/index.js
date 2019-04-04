@@ -138,7 +138,6 @@ class Form extends Component {
                         style={styles.input}
                         underlineColorAndroid="transparent"
                         value={this.state.nota3}
-                        ref="terceiro"
                         onChangeText={async nota3 => {
                             const peso3 = Number(
                                 (nota3 * Pesos.peso3) / 10
