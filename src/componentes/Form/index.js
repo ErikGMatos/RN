@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ToastAndroid } from "react-native";
 import { TextInputMask } from "react-native-masked-text";
 import styles from "./styles";
 import Pesos, { valorPorQuestao } from "./pesoNota";
@@ -17,11 +17,7 @@ class Form extends Component {
     };
 
     SomaTotal = () => {
-        const {
-            peso1,
-            peso2,
-            peso3,
-        } = this.state;
+        const { peso1, peso2, peso3 } = this.state;
         const somaDosPesos = Number(peso1) + Number(peso2) + Number(peso3);
         this.setState({
             pesototal: somaDosPesos.toFixed(2)
@@ -65,17 +61,28 @@ class Form extends Component {
                         underlineColorAndroid="transparent"
                         value={this.state.nota1}
                         returnKeyType={"next"}
-                        autoFocus={true}
                         onChangeText={async nota1 => {
-                            const peso1 = Number(
-                                (nota1 * Pesos.peso1) / 10
-                            ).toFixed(2);
-                            await this.setState({
-                                nota1,
-                                peso1
-                            });
+                            const maiorQ10 = Number(nota1) > 10;
+                            if (!maiorQ10) {
+                                const peso1 = Number(
+                                    (nota1 * Pesos.peso1) / 10
+                                ).toFixed(2);
+                                await this.setState({
+                                    nota1,
+                                    peso1
+                                });
 
-                            this.SomaTotal();
+                                this.SomaTotal();
+                            } else {
+                                ToastAndroid.show(
+                                    "A nota limite é 10",
+                                    ToastAndroid.SHORT
+                                );
+                                await this.setState({
+                                    nota1: "",
+                                    peso1: ""
+                                });
+                            }
                         }}
                     />
                     <Text style={styles.textNotaPesoFinal}>
@@ -102,14 +109,26 @@ class Form extends Component {
                         underlineColorAndroid="transparent"
                         value={this.state.nota2}
                         onChangeText={async nota2 => {
-                            const peso2 = Number(
-                                (nota2 * Pesos.peso2) / 10
-                            ).toFixed(2);
-                            await this.setState({
-                                nota2,
-                                peso2
-                            });
-                            this.SomaTotal();
+                            const maiorQ10 = Number(nota2) > 10;
+                            if (!maiorQ10) {
+                                const peso2 = Number(
+                                    (nota2 * Pesos.peso2) / 10
+                                ).toFixed(2);
+                                await this.setState({
+                                    nota2,
+                                    peso2
+                                });
+                                this.SomaTotal();
+                            } else {
+                                ToastAndroid.show(
+                                    "A nota limite é 10",
+                                    ToastAndroid.SHORT
+                                );
+                                await this.setState({
+                                    nota2: "",
+                                    peso2: ""
+                                });
+                            }
                         }}
                     />
                     <Text style={styles.textNotaPesoFinal}>
@@ -135,14 +154,26 @@ class Form extends Component {
                         underlineColorAndroid="transparent"
                         value={this.state.nota3}
                         onChangeText={async nota3 => {
-                            const peso3 = Number(
-                                (nota3 * Pesos.peso3) / 10
-                            ).toFixed(2);
-                            await this.setState({
-                                nota3,
-                                peso3
-                            });
-                            this.SomaTotal();
+                            const maiorQ10 = Number(nota3) > 10;
+                            if (!maiorQ10) {
+                                const peso3 = Number(
+                                    (nota3 * Pesos.peso3) / 10
+                                ).toFixed(2);
+                                await this.setState({
+                                    nota3,
+                                    peso3
+                                });
+                                this.SomaTotal();
+                            } else {
+                                ToastAndroid.show(
+                                    "A nota limite é 10",
+                                    ToastAndroid.SHORT
+                                );
+                                await this.setState({
+                                    nota3: "",
+                                    peso3: ""
+                                });
+                            }
                         }}
                     />
                     <Text style={styles.textNotaPesoFinal}>
@@ -164,7 +195,8 @@ class Form extends Component {
                     style={{
                         flexDirection: "row",
                         alignItem: "center",
-                        marginTop: 20
+                        marginTop: 20,
+                        marginBottom: 20
                     }}
                 >
                     <Text style={{ fontSize: 18 }}>
