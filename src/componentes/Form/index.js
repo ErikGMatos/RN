@@ -18,13 +18,9 @@ class Form extends Component {
 
     SomaTotal = () => {
         const {
-            nota1,
-            nota2,
-            nota3,
             peso1,
             peso2,
             peso3,
-            pesototal
         } = this.state;
         const somaDosPesos = Number(peso1) + Number(peso2) + Number(peso3);
         this.setState({
