@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         height: 50,
         backgroundColor: "#fff"
+    },
+    span: {
+        color: "#f00"
     }
 });
 

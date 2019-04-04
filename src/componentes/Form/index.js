@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import Icon from "react-native-vector-icons/SimpleLineIcons";
-import { View, TextInput, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { TextInputMask } from "react-native-masked-text";
 import styles from "./styles";
-import Pesos from "./pesoNota";
+import Pesos, { valorPorQuestao } from "./pesoNota";
 
 class Form extends Component {
     state = {
@@ -27,11 +26,9 @@ class Form extends Component {
             peso3,
             pesototal
         } = this.state;
-        const total = Number(nota1) + Number(nota2) + Number(nota3);
-        const pesototal2 = Number(peso1) + Number(peso2) + Number(peso3);
+        const somaDosPesos = Number(peso1) + Number(peso2) + Number(peso3);
         this.setState({
-            total: total.toFixed(2),
-            pesototal: pesototal2.toFixed(2)
+            pesototal: somaDosPesos.toFixed(2)
         });
     };
 
@@ -40,7 +37,6 @@ class Form extends Component {
             nota1: "",
             nota2: "",
             nota3: "",
-            total: "",
             peso1: "",
             peso2: "",
             peso3: "",
@@ -72,6 +68,8 @@ class Form extends Component {
                         style={styles.input}
                         underlineColorAndroid="transparent"
                         value={this.state.nota1}
+                        returnKeyType={"next"}
+                        autoFocus={true}
                         onChangeText={async nota1 => {
                             const peso1 = Number(
                                 (nota1 * Pesos.peso1) / 10
@@ -80,6 +78,7 @@ class Form extends Component {
                                 nota1,
                                 peso1
                             });
+
                             this.SomaTotal();
                         }}
                     />
@@ -100,6 +99,7 @@ class Form extends Component {
                             separator: ".",
                             unit: ""
                         }}
+                        returnKeyType={"next"}
                         placeholder="nota 2"
                         maxLength={5}
                         style={styles.input}
@@ -138,6 +138,7 @@ class Form extends Component {
                         style={styles.input}
                         underlineColorAndroid="transparent"
                         value={this.state.nota3}
+                        ref="terceiro"
                         onChangeText={async nota3 => {
                             const peso3 = Number(
                                 (nota3 * Pesos.peso3) / 10
@@ -159,18 +160,38 @@ class Form extends Component {
                 >
                     <Text style={styles.textCalcular}>Reset</Text>
                 </TouchableOpacity>
-                <Text style={{ fontSize: 20, marginTop: 20 }}>
-                    Questões prova final:{" "}
-                    <Text style={{ color: "#3D7AE8", fontWeight: "bold" }}>
-                        {this.state.total}
-                    </Text>
+                <Text>
+                    Considerando uma média mínima de{" "}
+                    <Text style={styles.span}>6</Text> e numero de questões na
+                    prova final de <Text style={styles.span}>16</Text>
                 </Text>
-                <Text style={{ fontSize: 20, marginTop: 20 }}>
-                    Peso total:{" "}
-                    <Text style={{ color: "#3D7AE8", fontWeight: "bold" }}>
-                        {this.state.pesototal}
+                <View
+                    style={{
+                        flexDirection: "row",
+                        alignItem: "center",
+                        marginTop: 20
+                    }}
+                >
+                    <Text style={{ fontSize: 18 }}>
+                        Mínimo de questoes na prova final:
                     </Text>
-                </Text>
+                    <Text
+                        style={{
+                            color: "#3d7ae8",
+                            fontWeight: "bold",
+                            paddingHorizontal: 10,
+                            fontSize: 19
+                        }}
+                    >
+                        {6 - this.state.pesototal === 6
+                            ? ""
+                            : 6 - this.state.pesototal < 0
+                            ? ""
+                            : Math.ceil(
+                                  (6 - this.state.pesototal) / valorPorQuestao
+                              )}
+                    </Text>
+                </View>
             </View>
         );
     }
